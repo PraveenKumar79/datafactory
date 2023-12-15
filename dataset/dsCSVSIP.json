@@ -5,6 +5,9 @@
 			"referenceName": "azBlobSIP",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "CSVFileDataSets"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {

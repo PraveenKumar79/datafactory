@@ -311,6 +311,7 @@
 						"typeProperties": {
 							"source": {
 								"type": "SqlServerSource",
+								"sqlReaderQuery": "  SELECT distinct [SchemeName]      \n  FROM [SIPDB].[dbo].[SIPINPUT]",
 								"queryTimeout": "02:00:00",
 								"partitionOption": "None"
 							},

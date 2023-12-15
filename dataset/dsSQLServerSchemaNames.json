@@ -1,0 +1,29 @@
+{
+	"name": "dsSQLServerSchemaNames",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "sqlserverLS",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "SqlDataSets"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Schema_Name",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Schema_Names"
+		}
+	}
+}

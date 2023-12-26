@@ -1,0 +1,9 @@
+{
+	"name": "dfSIP",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "f73e04d7-23c8-499b-b5e8-605d7b88177b",
+		"tenantId": "79e96af5-3761-4cf7-ae16-a0cb97a4c384"
+	}
+}

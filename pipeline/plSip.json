@@ -24,6 +24,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -45,7 +46,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@indexOf(activity('getSipMainMetaData').output.itemName,'Dividend')",
+						"value": "@endswith(activity('getSipMainMetaData').output.pipelineReturnValue,'Div')",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [

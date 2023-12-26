@@ -19,7 +19,9 @@
 						"referenceName": "dsSIP",
 						"type": "DatasetReference"
 					},
-					"fieldList": [],
+					"fieldList": [
+						"itemName"
+					],
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
 						"enablePartitionDiscovery": false
@@ -27,6 +29,196 @@
 					"formatSettings": {
 						"type": "DelimitedTextReadSettings"
 					}
+				}
+			},
+			{
+				"name": "IfDividentFileExists",
+				"type": "IfCondition",
+				"dependsOn": [
+					{
+						"activity": "getSipMainMetaData",
+						"dependencyConditions": [
+							"Skipped"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"expression": {
+						"value": "@indexOf(activity('getSipMainMetaData').output.itemName,'Dividend')",
+						"type": "Expression"
+					},
+					"ifTrueActivities": [
+						{
+							"name": "cpyToDividendFolder",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings",
+										"copyBehavior": "MergeFiles"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "SlNo",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "SlNo",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "AccountName",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "AccountName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "FolioNumber",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "FolioNumber",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "TransactionType",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "TransactionType",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "SchemeName",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "SchemeName",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Price",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Price",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Amount",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Amount",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "Units",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Units",
+												"type": "String",
+												"physicalType": "String"
+											}
+										},
+										{
+											"source": {
+												"name": "TransactionDate",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "TransactionDate",
+												"type": "String",
+												"physicalType": "String"
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "dsSIP",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "dsDividend",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
 				}
 			}
 		],

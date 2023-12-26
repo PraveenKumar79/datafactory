@@ -46,7 +46,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@endswith(activity('getSipMainMetaData').output.pipelineReturnValue,'Div')",
+						"value": "@endswith(activity('getSipMainMetaData').output.pipelineReturnValue,'Dec_Dividend.csv')",
 						"type": "Expression"
 					},
 					"ifTrueActivities": [

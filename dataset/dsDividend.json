@@ -1,0 +1,25 @@
+{
+	"name": "dsDividend",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "azBlobStrg",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "CSVFileDataSets"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "dividend"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}

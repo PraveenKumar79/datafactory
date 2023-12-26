@@ -1,0 +1,78 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "dfSIP"
+		},
+		"azBlobSIP_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'azBlobSIP'"
+		},
+		"azBlobStrg_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'azBlobStrg'"
+		},
+		"sqlserverLS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'sqlserverLS'",
+			"defaultValue": "Integrated Security=True;Data Source=DESKTOP-4D2KJHF;Initial Catalog=SIPDB"
+		},
+		"sqlserverLS_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'sqlserverLS'"
+		},
+		"sqlserverLS_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "admin"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "dfSIP_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"azBlobSIP_connectionString": {
+						"value": "[parameters('azBlobSIP_connectionString')]"
+					},
+					"azBlobStrg_connectionString": {
+						"value": "[parameters('azBlobStrg_connectionString')]"
+					},
+					"sqlserverLS_connectionString": {
+						"value": "[parameters('sqlserverLS_connectionString')]"
+					},
+					"sqlserverLS_password": {
+						"value": "[parameters('sqlserverLS_password')]"
+					},
+					"sqlserverLS_properties_typeProperties_userName": {
+						"value": "[parameters('sqlserverLS_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

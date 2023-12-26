@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "dfSIP"
+		},
+		"azBlobSIP_connectionString": {
+			"value": ""
+		},
+		"azBlobStrg_connectionString": {
+			"value": ""
+		},
+		"sqlserverLS_connectionString": {
+			"value": "Integrated Security=True;Data Source=DESKTOP-4D2KJHF;Initial Catalog=SIPDB"
+		},
+		"sqlserverLS_password": {
+			"value": ""
+		},
+		"sqlserverLS_properties_typeProperties_userName": {
+			"value": "admin"
+		}
+	}
+}

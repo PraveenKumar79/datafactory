@@ -13,7 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "input",
+				"fileName": "SIPDATA_Dec.csv",
 				"container": "sipinput"
 			},
 			"columnDelimiter": ",",

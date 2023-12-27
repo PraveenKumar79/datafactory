@@ -46,7 +46,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('getSipInputMetaData').output.pipelineReturnValue",
+						"value": "@activity('getSipInputMetaData').output.childItems",
 						"type": "Expression"
 					},
 					"activities": [

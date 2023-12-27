@@ -268,7 +268,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"items": {
-								"value": "@activity('getSipInputMetaData').output.childItems",
+								"value": "@activity('getSipInputMetaData').output",
 								"type": "Expression"
 							},
 							"activities": [

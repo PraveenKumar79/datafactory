@@ -1,5 +1,5 @@
 {
-	"name": "dsSIPCSOutput",
+	"name": "ds_csvinput",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "azBlobStorageLS",
@@ -13,8 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "*",
-				"container": "sipoutput"
+				"container": "sipinput"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

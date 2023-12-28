@@ -1,0 +1,9 @@
+{
+	"name": "azureDFDec28",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "2484b611-9e9c-4dad-81a3-cb43bdbd0e80",
+		"tenantId": "79e96af5-3761-4cf7-ae16-a0cb97a4c384"
+	}
+}

@@ -1,6 +1,20 @@
 {
 	"name": "pl_ForEachTables",
 	"properties": {
+		"activities": [
+			{
+				"name": "foreachReadTables",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@pipeline().parameters.TableNames",
+						"type": "Expression"
+					}
+				}
+			}
+		],
 		"parameters": {
 			"TableNames": {
 				"type": "array",

@@ -1,0 +1,12 @@
+{
+	"name": "sqlDSOnpremise",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "lsSQLOnPremise",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": []
+	}
+}

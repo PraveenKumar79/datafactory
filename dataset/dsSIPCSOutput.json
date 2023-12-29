@@ -2,7 +2,7 @@
 	"name": "dsSIPCSOutput",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "azBlobStorageLS",
+			"referenceName": "azBlobStorageLS2",
 			"type": "LinkedServiceReference"
 		},
 		"folder": {
@@ -13,6 +13,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"folderPath": "fromtables",
 				"container": "sipoutput"
 			},
 			"columnDelimiter": ",",

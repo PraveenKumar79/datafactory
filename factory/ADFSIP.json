@@ -1,0 +1,9 @@
+{
+	"name": "ADFSIP",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "9da0d86f-5cd9-4e36-9023-382c0895a0c1",
+		"tenantId": "79e96af5-3761-4cf7-ae16-a0cb97a4c384"
+	}
+}

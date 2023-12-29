@@ -1,0 +1,15 @@
+{
+	"name": "pl_ForEachTables",
+	"properties": {
+		"parameters": {
+			"TableNames": {
+				"type": "array",
+				"defaultValue": [
+					"SELECT * FROM [SIPDB].[dbo].[Dividend]",
+					"SELECT * FROM [SIPDB].[dbo].[SIPINPUT]"
+				]
+			}
+		},
+		"annotations": []
+	}
+}

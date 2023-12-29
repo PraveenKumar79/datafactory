@@ -1,6 +1,12 @@
 {
 	"name": "pl_copyDynamically",
 	"properties": {
+		"variables": {
+			"TableNames": {
+				"type": "String",
+				"defaultValue": "[\"[SIPDB].[dbo].[Dividend]\",\"[SIPDB].[dbo].[SIPINPUT]\"]"
+			}
+		},
 		"annotations": []
 	}
 }

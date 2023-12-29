@@ -5,6 +5,11 @@
 			"referenceName": "azBlobStorageLS2",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
 		"folder": {
 			"name": "DataFiles"
 		},
@@ -13,8 +18,11 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"folderPath": "fromtables",
-				"container": "sipoutput"
+				"fileName": {
+					"value": "@dataset().FileName",
+					"type": "Expression"
+				},
+				"container": "fromtables"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

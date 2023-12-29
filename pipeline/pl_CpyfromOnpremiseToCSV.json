@@ -16,10 +16,15 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "SqlServerSource",
-						"sqlReaderQuery": "SELECT distinct \n      [SchemeName]\n      \n  FROM [SIPDB].[dbo].[SIPINPUT]\n",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
 					},
 					"sink": {
 						"type": "DelimitedTextSink",
@@ -44,7 +49,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "sqlOnPremise",
+						"referenceName": "ds_csvinput",
 						"type": "DatasetReference"
 					}
 				],

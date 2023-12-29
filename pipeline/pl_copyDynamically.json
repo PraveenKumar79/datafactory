@@ -81,8 +81,11 @@
 		],
 		"variables": {
 			"TableNames": {
-				"type": "String",
-				"defaultValue": "[\"[SIPDB].[dbo].[Dividend]\",\"[SIPDB].[dbo].[SIPINPUT]\"]"
+				"type": "Array",
+				"defaultValue": [
+					"[SIPDB].[dbo].[Dividend]",
+					"[SIPDB].[dbo].[SIPINPUT]"
+				]
 			}
 		},
 		"annotations": []

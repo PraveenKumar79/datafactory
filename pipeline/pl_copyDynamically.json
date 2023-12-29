@@ -1,6 +1,20 @@
 {
 	"name": "pl_copyDynamically",
 	"properties": {
+		"activities": [
+			{
+				"name": "foreachCopyTables",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('TableNames')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
 		"variables": {
 			"TableNames": {
 				"type": "String",

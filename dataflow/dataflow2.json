@@ -1,0 +1,56 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dsSIPMain",
+						"type": "DatasetReference"
+					},
+					"name": "srcSIPMain"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dsDestination",
+						"type": "DatasetReference"
+					},
+					"name": "snkAggregate"
+				}
+			],
+			"transformations": [
+				{
+					"name": "aggregateon"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          SlNo as string,",
+				"          AccountName as string,",
+				"          FolioNumber as string,",
+				"          TransactionType as string,",
+				"          SchemeName as string,",
+				"          Price as string,",
+				"          Amount as decimal(10,0),",
+				"          Units as decimal(10,0),",
+				"          TransactionDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: true,",
+				"     ignoreNoFilesFound: false) ~> srcSIPMain",
+				"srcSIPMain aggregate(groupBy(TransactionType),",
+				"     Amount = sum(Amount),",
+				"          Units = sum(Units)) ~> aggregateon",
+				"aggregateon sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['Aggregate'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> snkAggregate"
+			]
+		}
+	}
+}

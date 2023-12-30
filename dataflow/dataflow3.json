@@ -49,7 +49,7 @@
 				"     lateral: true) ~> pivotOnTransactionType",
 				"pivotOnTransactionType sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     partitionFileNames:['PivotData'],",
+				"     partitionFileNames:['PivotData.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     partitionBy('hash', 1)) ~> snkPivotData"

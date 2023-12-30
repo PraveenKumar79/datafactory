@@ -19,6 +19,20 @@
 						"type": "DatasetReference"
 					},
 					"name": "snkDestination"
+				},
+				{
+					"dataset": {
+						"referenceName": "dsDestination",
+						"type": "DatasetReference"
+					},
+					"name": "snkRedemption"
+				},
+				{
+					"dataset": {
+						"referenceName": "dsDestination",
+						"type": "DatasetReference"
+					},
+					"name": "snkPurchase"
 				}
 			],
 			"transformations": [
@@ -55,7 +69,19 @@
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> snkDestination"
+				"     skipDuplicateMapOutputs: true) ~> snkDestination",
+				"Redemption@Redemption sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:[''],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> snkRedemption",
+				"Redemption@Purchase sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:[''],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> snkPurchase"
 			]
 		}
 	}

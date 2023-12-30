@@ -72,7 +72,7 @@
 				"     skipDuplicateMapOutputs: true) ~> snkDestination",
 				"Redemption@Redemption sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     partitionFileNames:[''],",
+				"     partitionFileNames:[(concat('Redemption_', toString(currentDate())))],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     partitionBy('hash', 1)) ~> snkRedemption",

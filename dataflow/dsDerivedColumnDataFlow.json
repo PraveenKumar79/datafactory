@@ -1,0 +1,52 @@
+{
+	"name": "dsDerivedColumnDataFlow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dsSIPMain",
+						"type": "DatasetReference"
+					},
+					"name": "srcSIPMainCSV"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dsDestination",
+						"type": "DatasetReference"
+					},
+					"name": "snkDestination"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          SlNo as string,",
+				"          AccountName as string,",
+				"          FolioNumber as string,",
+				"          TransactionType as string,",
+				"          SchemeName as string,",
+				"          Price as string,",
+				"          Amount as string,",
+				"          Units as string,",
+				"          TransactionDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> srcSIPMainCSV",
+				"srcSIPMainCSV derive(CreatedDate = currentDate()) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> snkDestination"
+			]
+		}
+	}
+}

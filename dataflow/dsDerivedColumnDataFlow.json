@@ -24,6 +24,12 @@
 			"transformations": [
 				{
 					"name": "derivedColumn1"
+				},
+				{
+					"name": "splitDividendTypeTransactions"
+				},
+				{
+					"name": "Redemption"
 				}
 			],
 			"scriptLines": [
@@ -41,7 +47,11 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> srcSIPMainCSV",
-				"srcSIPMainCSV derive(CreatedDate = currentDate()) ~> derivedColumn1",
+				"splitDividendTypeTransactions@DividendPayOut derive(CreatedDate = currentDate()) ~> derivedColumn1",
+				"srcSIPMainCSV split(TransactionType=='DividendPayOut',",
+				"     disjoint: true) ~> splitDividendTypeTransactions@(DividendPayOut, PurchaseOrRedemptionStream)",
+				"splitDividendTypeTransactions@PurchaseOrRedemptionStream split(TransactionType =='Redemption',",
+				"     disjoint: true) ~> Redemption@(Redemption, Purchase)",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",

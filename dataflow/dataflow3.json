@@ -12,8 +12,20 @@
 					"name": "srcSIPMain"
 				}
 			],
-			"sinks": [],
-			"transformations": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dsDestination",
+						"type": "DatasetReference"
+					},
+					"name": "snkPivotData"
+				}
+			],
+			"transformations": [
+				{
+					"name": "pivotOnTransactionType"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          SlNo as string,",
@@ -22,13 +34,25 @@
 				"          TransactionType as string,",
 				"          SchemeName as string,",
 				"          Price as string,",
-				"          Amount as string,",
-				"          Units as string,",
+				"          Amount as decimal(10,0),",
+				"          Units as decimal(10,0),",
 				"          TransactionDate as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> srcSIPMain"
+				"     ignoreNoFilesFound: false) ~> srcSIPMain",
+				"srcSIPMain pivot(groupBy(TransactionType),",
+				"     pivotBy(SchemeName),",
+				"     totalUnits = sum(Units),",
+				"          TotalAmount = sum(Amount),",
+				"     columnNaming: '$N$V',",
+				"     lateral: true) ~> pivotOnTransactionType",
+				"pivotOnTransactionType sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['PivotData'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> snkPivotData"
 			]
 		}
 	}

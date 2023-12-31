@@ -21,7 +21,11 @@
 					"name": "snkSIPData"
 				}
 			],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "alterRow1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          SlNo as string,",
@@ -37,7 +41,8 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> srcSIPMain",
-				"srcSIPMain sink(allowSchemaDrift: true,",
+				"srcSIPMain alterRow(deleteIf(contains([SchemeName], '-'))) ~> alterRow1",
+				"alterRow1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> snkSIPData"

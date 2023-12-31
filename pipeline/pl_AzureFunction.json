@@ -13,7 +13,15 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"functionName": "gettransactiontypes",
+					"method": "GET"
+				},
+				"linkedServiceName": {
+					"referenceName": "azFuncLinkedService",
+					"type": "LinkedServiceReference"
+				}
 			}
 		],
 		"annotations": []

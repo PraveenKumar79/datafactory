@@ -12,7 +12,15 @@
 					"name": "srcSIPMain"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dsDestinationDec31",
+						"type": "DatasetReference"
+					},
+					"name": "snkSIPData"
+				}
+			],
 			"transformations": [],
 			"scriptLines": [
 				"source(output(",
@@ -28,7 +36,11 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> srcSIPMain"
+				"     ignoreNoFilesFound: false) ~> srcSIPMain",
+				"srcSIPMain sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> snkSIPData"
 			]
 		}
 	}

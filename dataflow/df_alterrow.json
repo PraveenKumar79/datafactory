@@ -41,7 +41,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> srcSIPMain",
-				"srcSIPMain alterRow(deleteIf(contains([SchemeName], '-'))) ~> alterRow1",
+				"srcSIPMain alterRow(deleteIf(contains([SchemeName], #item=='-'))) ~> alterRow1",
 				"alterRow1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",

@@ -1,10 +1,10 @@
 {
-	"name": "pl_upsert",
+	"name": "pl_LoadOnPremiseDB",
 	"properties": {
 		"activities": [
 			{
-				"name": "df_Upsert",
-				"type": "ExecuteDataFlow",
+				"name": "cpy",
+				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -15,15 +15,7 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataflow": {
-						"referenceName": "df_DataFlow",
-						"type": "DataFlowReference"
-					},
-					"compute": {
-						"coreCount": 8,
-						"computeType": "General"
-					},
-					"traceLevel": "Fine"
+					"enableStaging": false
 				}
 			}
 		],

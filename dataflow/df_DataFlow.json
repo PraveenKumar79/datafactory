@@ -12,7 +12,15 @@
 					"name": "srcMain2024"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "sqlServerOnPremise",
+						"type": "DatasetReference"
+					},
+					"name": "snkDestination"
+				}
+			],
 			"transformations": [
 				{
 					"name": "altRwUpsert"
@@ -34,7 +42,33 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     wildcardPaths:['*.csv']) ~> srcMain2024",
-				"srcMain2024 alterRow(upsertIf(true())) ~> altRwUpsert"
+				"srcMain2024 alterRow(upsertIf(true())) ~> altRwUpsert",
+				"altRwUpsert sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          SlNo as integer,",
+				"          AccountName as string,",
+				"          FolioNumber as string,",
+				"          TransactionType as string,",
+				"          SchemeName as string,",
+				"          Price as double,",
+				"          Amount as double,",
+				"          Units as double,",
+				"          TransactionDate as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:true,",
+				"     keys:['FolioNumber','TransactionType','SchemeName'],",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          SlNo,",
+				"          each(match(type=='string')),",
+				"          each(match(type=='decimal'))",
+				"     )) ~> snkDestination"
 			]
 		}
 	}

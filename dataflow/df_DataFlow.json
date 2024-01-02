@@ -51,9 +51,9 @@
 				"          FolioNumber as string,",
 				"          TransactionType as string,",
 				"          SchemeName as string,",
-				"          Price as double,",
-				"          Amount as double,",
-				"          Units as double,",
+				"          Price as decimal(18,2),",
+				"          Amount as decimal(18,2),",
+				"          Units as decimal(18,2),",
 				"          TransactionDate as string",
 				"     ),",
 				"     deletable:false,",
@@ -66,8 +66,7 @@
 				"     skipDuplicateMapOutputs: true,",
 				"     mapColumn(",
 				"          SlNo,",
-				"          each(match(type=='string')),",
-				"          each(match(type=='decimal'))",
+				"          each(match(type=='string'))",
 				"     )) ~> snkDestination"
 			]
 		}

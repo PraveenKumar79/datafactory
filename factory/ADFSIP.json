@@ -1,9 +1,9 @@
 {
 	"name": "ADFSIP",
-	"location": "eastus",
+	"location": "southindia",
 	"identity": {
 		"type": "SystemAssigned",
-		"principalId": "e4a53c89-ad31-4c14-9237-b7cba1e5bab4",
+		"principalId": "f00aa0b0-95d0-4eed-ba1e-ab856b2a5571",
 		"tenantId": "79e96af5-3761-4cf7-ae16-a0cb97a4c384"
 	}
 }

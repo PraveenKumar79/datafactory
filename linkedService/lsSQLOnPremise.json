@@ -7,10 +7,10 @@
 		"typeProperties": {
 			"connectionString": "integrated security=True;data source=DESKTOP-4D2KJHF;initial catalog=SIPDB",
 			"userName": "admin",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI3ODRkMDdkYi02MjAzLTRlYzAtOGRlMC02ZTgxMjFkY2NkZjkiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI1ZjA0N2JkNy00M2ZmLTQ5ZDYtOGE3Yi0xNWMxNGI2MTJjYzAiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
-			"referenceName": "IRSIP",
+			"referenceName": "Ir20241",
 			"type": "IntegrationRuntimeReference"
 		}
 	}

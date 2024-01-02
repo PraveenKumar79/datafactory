@@ -57,7 +57,7 @@
 				"          Units as string,",
 				"          TransactionDate as string",
 				"     ),",
-				"     partitionFileNames:[''],",
+				"     partitionFileNames:['SIPAll.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     partitionBy('hash', 1)) ~> snkSIPDestination"

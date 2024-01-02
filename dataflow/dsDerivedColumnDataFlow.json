@@ -15,21 +15,21 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "dsDestination",
+						"referenceName": "dsDestination2024",
 						"type": "DatasetReference"
 					},
 					"name": "snkDestination"
 				},
 				{
 					"dataset": {
-						"referenceName": "dsDestination",
+						"referenceName": "dsDestination2024",
 						"type": "DatasetReference"
 					},
 					"name": "snkRedemption"
 				},
 				{
 					"dataset": {
-						"referenceName": "dsDestination",
+						"referenceName": "dsDestination2024",
 						"type": "DatasetReference"
 					},
 					"name": "snkPurchase"
@@ -68,18 +68,51 @@
 				"     disjoint: true) ~> Redemption@(Redemption, Purchase)",
 				"derivedColumn1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          SlNo as string,",
+				"          AccountName as string,",
+				"          FolioNumber as string,",
+				"          TransactionType as string,",
+				"          SchemeName as string,",
+				"          Price as string,",
+				"          Amount as string,",
+				"          Units as string,",
+				"          TransactionDate as string",
+				"     ),",
 				"     partitionFileNames:[(concat('Purchase_', toString(currentDate())))],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     partitionBy('hash', 1)) ~> snkDestination",
 				"Redemption@Redemption sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          SlNo as string,",
+				"          AccountName as string,",
+				"          FolioNumber as string,",
+				"          TransactionType as string,",
+				"          SchemeName as string,",
+				"          Price as string,",
+				"          Amount as string,",
+				"          Units as string,",
+				"          TransactionDate as string",
+				"     ),",
 				"     partitionFileNames:[(concat('Redemption_', toString(currentDate())))],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     partitionBy('hash', 1)) ~> snkRedemption",
 				"Redemption@Purchase sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          SlNo as string,",
+				"          AccountName as string,",
+				"          FolioNumber as string,",
+				"          TransactionType as string,",
+				"          SchemeName as string,",
+				"          Price as string,",
+				"          Amount as string,",
+				"          Units as string,",
+				"          TransactionDate as string",
+				"     ),",
 				"     partitionFileNames:[(concat('PurchasesTill_', toString(currentDate())))],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",

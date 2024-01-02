@@ -1,8 +1,8 @@
 {
-	"name": "dsDestination2024",
+	"name": "dsSIPMain2024",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "lsDestination2024",
+			"referenceName": "azSIPMain",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"container": "sipoutput"
+				"container": "sipmain"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

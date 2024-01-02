@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "dsDestination",
+						"referenceName": "dsDestination2024",
 						"type": "DatasetReference"
 					},
 					"name": "snkPivotData"
@@ -49,6 +49,17 @@
 				"     lateral: true) ~> pivotOnTransactionType",
 				"pivotOnTransactionType sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     input(",
+				"          SlNo as string,",
+				"          AccountName as string,",
+				"          FolioNumber as string,",
+				"          TransactionType as string,",
+				"          SchemeName as string,",
+				"          Price as string,",
+				"          Amount as string,",
+				"          Units as string,",
+				"          TransactionDate as string",
+				"     ),",
 				"     partitionFileNames:['PivotData.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",

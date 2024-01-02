@@ -24,6 +24,9 @@
 			"transformations": [
 				{
 					"name": "dcSchemaName"
+				},
+				{
+					"name": "alterDeleteEmptyRows"
 				}
 			],
 			"scriptLines": [
@@ -44,7 +47,8 @@
 				"     wildcardPaths:['*.csv']) ~> srcSIPMain",
 				"srcSIPMain derive(SchemeName = replace(SchemeName, '-', ''),",
 				"          FolioNumber = replace(FolioNumber, '/', '')) ~> dcSchemaName",
-				"dcSchemaName sink(allowSchemaDrift: true,",
+				"dcSchemaName alterRow(deleteIf(isNull(SlNo) || isNull(AccountName))) ~> alterDeleteEmptyRows",
+				"alterDeleteEmptyRows sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          SlNo as string,",

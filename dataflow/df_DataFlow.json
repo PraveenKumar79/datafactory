@@ -1,0 +1,41 @@
+{
+	"name": "df_DataFlow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dsSIPMain2024",
+						"type": "DatasetReference"
+					},
+					"name": "srcMain2024"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "altRwUpsert"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          SlNo as string,",
+				"          AccountName as string,",
+				"          FolioNumber as string,",
+				"          TransactionType as string,",
+				"          SchemeName as string,",
+				"          Price as string,",
+				"          Amount as string,",
+				"          Units as string,",
+				"          TransactionDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     wildcardPaths:['*.csv']) ~> srcMain2024",
+				"srcMain2024 alterRow(upsertIf(true())) ~> altRwUpsert"
+			]
+		}
+	}
+}

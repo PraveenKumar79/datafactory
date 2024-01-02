@@ -38,6 +38,18 @@
 						"mappings": [
 							{
 								"source": {
+									"name": "SlNo",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "SlNo",
+									"type": "Int32",
+									"physicalType": "int"
+								}
+							},
+							{
+								"source": {
 									"name": "AccountName",
 									"type": "String",
 									"physicalType": "String"

@@ -1,0 +1,67 @@
+{
+	"name": "df_CleanSIPData",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "dsSIPMain2024",
+						"type": "DatasetReference"
+					},
+					"name": "srcSIPMain"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "dsDestination2024",
+						"type": "DatasetReference"
+					},
+					"name": "snkSIPDestination"
+				}
+			],
+			"transformations": [
+				{
+					"name": "dcSchemaName"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          SlNo as string,",
+				"          AccountName as string,",
+				"          FolioNumber as string,",
+				"          TransactionType as string,",
+				"          SchemeName as string,",
+				"          Price as string,",
+				"          Amount as string,",
+				"          Units as string,",
+				"          TransactionDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     wildcardPaths:['*.csv']) ~> srcSIPMain",
+				"srcSIPMain derive(SchemeName = replace(SchemeName, '-', ''),",
+				"          FolioNumber = replace(FolioNumber, '/', '')) ~> dcSchemaName",
+				"dcSchemaName sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          SlNo as string,",
+				"          AccountName as string,",
+				"          FolioNumber as string,",
+				"          TransactionType as string,",
+				"          SchemeName as string,",
+				"          Price as string,",
+				"          Amount as string,",
+				"          Units as string,",
+				"          TransactionDate as string",
+				"     ),",
+				"     partitionFileNames:[''],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> snkSIPDestination"
+			]
+		}
+	}
+}
